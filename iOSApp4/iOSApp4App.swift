@@ -8,10 +8,17 @@
 import SwiftUI
 
 @main
-struct iOSApp4App: App {
+struct iOSAapp4: App {
+    @StateObject var userManager = UserManager()
     var body: some Scene {
         WindowGroup {
-            ScavengerHuntView()
+               if userManager.currentUser == nil {
+                   SplashScreenView()
+                       .environmentObject(userManager)
+                } else {
+                   ScavengerHuntView()
+                        
+               }
+            }
         }
     }
-}
